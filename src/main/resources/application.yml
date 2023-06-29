@@ -1,0 +1,26 @@
+server:
+  port: 8002
+
+msa:
+  cart-service:
+    url: localhost:8000
+  product-service:
+    url: localhost:8001
+
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/test_db
+    username: sanho
+    password: sanho0608
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 3000
+      maximum-pool-size: 5
+      max-lifetime: 30000
+      driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
