@@ -24,3 +24,16 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+
+
+cloud:
+  aws:
+    s3:
+      bucket: prac-bucket-2023-06-28
+    region:
+      static: ap-northeast-2
+    cloud-front:
+      domain-name:
+      distribution-id:
+

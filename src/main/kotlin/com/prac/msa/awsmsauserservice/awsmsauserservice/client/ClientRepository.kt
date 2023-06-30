@@ -1,6 +1,6 @@
 package com.prac.msa.awsmsauserservice.awsmsauserservice.client
 
-import org.apache.catalina.User
+import com.prac.msa.awsmsauserservice.awsmsauserservice.entity.User
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
