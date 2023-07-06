@@ -60,7 +60,9 @@ class UserController(
     @DeleteMapping("/{userId}/image/delete")
     fun deleteUserImage(
         @PathVariable userId: Long
-    ) {
+    ): ResponseEntity<String> {
         userService.deleteUserImage(userId)
+
+        return ResponseEntity.ok("삭제 완료")
     }
 }
