@@ -19,6 +19,6 @@ data class User(
     var password: String,
 
     @Column(nullable = true)
-    var imageUrl: String?,
+    var imageUrl: String? = null,
 ) {
 }
