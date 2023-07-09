@@ -12,7 +12,7 @@ plugins {
 
 
 group = "com.prac.msa.awsmsauserservice"
-version = "0.0.1-SNAPSHOT"
+version = "1.0"
 
 noArg {
     annotation("jakarta.persistence.Entity")
