@@ -28,9 +28,9 @@ spring:
 cloud:
   aws:
     s3:
-      bucket: prac-bucket-2023-06-28
+      bucket:
     region:
-      static: ap-northeast-2
+      static:
     cloud-front:
       domain-name:
       distribution-id:
