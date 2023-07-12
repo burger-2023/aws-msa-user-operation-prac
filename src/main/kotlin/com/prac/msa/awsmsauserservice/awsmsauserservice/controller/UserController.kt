@@ -25,14 +25,6 @@ class UserController(
         return ResponseEntity.ok(registeredUser)
     }
 
-    @PostMapping("/{userId}/image/register")
-    fun registerUserImage(
-        @RequestParam image: MultipartFile,
-        @PathVariable userId: Long
-    ) {
-        userService.registerUserImage(image, userId)
-    }
-
     /**
      * 사용자 로그인을 수행합니다. Request body에는 email과 password가 포함되어야 합니다.
      * */
@@ -57,12 +49,4 @@ class UserController(
         return ResponseEntity.ok(user)
     }
 
-    @DeleteMapping("/{userId}/image/delete")
-    fun deleteUserImage(
-        @PathVariable userId: Long
-    ): ResponseEntity<String> {
-        userService.deleteUserImage(userId)
-
-        return ResponseEntity.ok("삭제 완료")
-    }
 }

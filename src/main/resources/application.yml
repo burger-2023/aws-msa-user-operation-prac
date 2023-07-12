@@ -10,28 +10,17 @@ msa:
 
 spring:
   datasource:
-    url:
-    username:
+    url: jdbc:h2:mem:testuserdb
+    username: sa
     password:
-    driver-class-name: org.postgresql.Driver
+    driverClassName: org.h2.Driver
     hikari:
       connection-timeout: 3000
       maximum-pool-size: 5
       max-lifetime: 30000
-      driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
       ddl-auto: create
     show-sql: true
-
-cloud:
-  aws:
-    s3:
-      bucket:
-    region:
-      static:
-    cloud-front:
-      domain-name:
-      distribution-id:
 
