@@ -12,7 +12,7 @@ import java.time.LocalDateTime
 @RestController
 class SystemController {
 
-    @GetMapping("/health_check")
+    @GetMapping("/user/health_check")
     @Transactional(readOnly = true)
     fun healthCheck() = ResponseEntity.ok(
         mapOf(
