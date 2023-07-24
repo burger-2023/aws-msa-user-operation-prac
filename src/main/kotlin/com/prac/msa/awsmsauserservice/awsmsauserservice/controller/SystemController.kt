@@ -4,15 +4,17 @@ import com.sun.management.OperatingSystemMXBean
 import org.springframework.http.ResponseEntity
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.lang.management.ManagementFactory
 import java.net.InetAddress
 import java.time.LocalDateTime
 
 @RestController
+@RequestMapping("/api/users")
 class SystemController {
 
-    @GetMapping("/user/health_check")
+    @GetMapping("/health_check")
     @Transactional(readOnly = true)
     fun healthCheck() = ResponseEntity.ok(
         mapOf(
