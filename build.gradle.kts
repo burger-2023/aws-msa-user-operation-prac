@@ -44,7 +44,7 @@ dependencies {
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
-    implementation("org.springframework.cloud:spring-cloud-starter-openfeign:4.0.3") // feign client
+    implementation("org.springframework.cloud:spring-cloud-starter-openfeign:4.0.4")
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.0")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.0")
