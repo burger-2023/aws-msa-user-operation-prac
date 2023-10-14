@@ -13,7 +13,7 @@ spring:
     url: jdbc:h2:mem:testuserdb
     username: sa
     password:
-    driverClassName: org.postgresql.Driver
+    driverClassName: org.h2.Driver
     hikari:
       connection-timeout: 3000
       maximum-pool-size: 5
