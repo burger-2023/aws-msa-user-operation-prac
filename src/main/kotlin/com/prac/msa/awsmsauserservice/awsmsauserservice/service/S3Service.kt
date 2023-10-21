@@ -1,5 +1,7 @@
 package com.prac.msa.awsmsauserservice.awsmsauserservice.service
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider
@@ -26,6 +28,7 @@ class S3Service(
     @Value("\${cloud.aws.cloud-front.distribution-id:null}") private val cloudFrontDistributionId: String?,
 ) {
 
+    private val logger: Logger = LoggerFactory.getLogger(this::class.java)
 
     private val awsCredentials = DefaultCredentialsProvider.create()
 
@@ -40,7 +43,6 @@ class S3Service(
         .build()
 
     fun uploadFile(key: String, bytes: ByteArray): String {
-        createInvalidation(key)
         s3.putObject(
             PutObjectRequest.builder()
                 .bucket(bucket)
@@ -49,6 +51,7 @@ class S3Service(
                 .build(),
             RequestBody.fromBytes(bytes)
         )
+        createInvalidation(key)
         return key
     }
 
@@ -66,7 +69,11 @@ class S3Service(
             .distributionId(cloudFrontDistributionId)
             .invalidationBatch(invalidationBatch)
             .build()
-        cloudFront.createInvalidation(invalidationRequest)
+        try {
+            cloudFront.createInvalidation(invalidationRequest)
+        } catch (e: Exception) {
+            logger.error("[캐시 무효화 실패] - " + e.message)
+        }
     }
 
     private fun encodeNonAsciiAndSpecialChars(input: String): String {
