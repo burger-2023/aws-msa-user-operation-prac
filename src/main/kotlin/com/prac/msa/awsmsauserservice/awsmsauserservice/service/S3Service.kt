@@ -22,11 +22,12 @@ import java.util.regex.Pattern
 
 @Service
 class S3Service(
-    @Value("\${cloud.aws.region.static:null}") private val region: String?,
-    @Value("\${cloud.aws.s3.bucket:null}") private val bucket: String?,
-    @Value("\${cloud.aws.cloud-front.domain-name:null}") private val cloudFrontDomainName: String?,
-    @Value("\${cloud.aws.cloud-front.distribution-id:null}") private val cloudFrontDistributionId: String?,
+    @Value("\${cloud.aws.region.static:}") private val region: String?,
+    @Value("\${cloud.aws.s3.bucket:}") private val bucket: String?,
+    @Value("\${cloud.aws.cloud-front.domain-name:}") private val cloudFrontDomainName: String?,
+    @Value("\${cloud.aws.cloud-front.distribution-id:}") private val cloudFrontDistributionId: String?,
 ) {
+
 
     private val logger: Logger = LoggerFactory.getLogger(this::class.java)
 
@@ -51,7 +52,8 @@ class S3Service(
                 .build(),
             RequestBody.fromBytes(bytes)
         )
-        createInvalidation(key)
+        if (cloudFrontDistributionId.isNullOrEmpty()) createInvalidation(key)
+
         return key
     }
 
@@ -63,7 +65,7 @@ class S3Service(
             .build()
         val invalidationBatch = InvalidationBatch.builder()
             .paths(invalidationPaths)
-            .callerReference(LocalDateTime.now().toString())
+            .callerReference(LocalDateTime.now().toString())ㅎ
             .build()
         val invalidationRequest = CreateInvalidationRequest.builder()
             .distributionId(cloudFrontDistributionId)
