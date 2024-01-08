@@ -22,7 +22,7 @@ import java.util.regex.Pattern
 
 @Service
 class S3Service(
-    @Value("\${cloud.aws.region.static:}") private val region: String?,
+    @Value("\${cloud.aws.region.static:ap-northeast-2}") private val region: String?,
     @Value("\${cloud.aws.s3.bucket:}") private val bucket: String?,
     @Value("\${cloud.aws.cloud-front.domain-name:}") private val cloudFrontDomainName: String?,
     @Value("\${cloud.aws.cloud-front.distribution-id:}") private val cloudFrontDistributionId: String?,
@@ -65,7 +65,7 @@ class S3Service(
             .build()
         val invalidationBatch = InvalidationBatch.builder()
             .paths(invalidationPaths)
-            .callerReference(LocalDateTime.now().toString())ㅎ
+            .callerReference(LocalDateTime.now().toString())
             .build()
         val invalidationRequest = CreateInvalidationRequest.builder()
             .distributionId(cloudFrontDistributionId)
